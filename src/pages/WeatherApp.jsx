@@ -25,6 +25,7 @@ const WeatherApp = () => {
                 <WeatherScreen
                     city={city}
                     weather={weather}
+                    setCity={setCity}
                 />
                 :
                 <SearchScreen 

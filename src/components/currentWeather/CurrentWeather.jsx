@@ -9,18 +9,21 @@ const CurrentWeather = (props) => {
     }
 
     return (
-        <div className="flex flex-col items-start px-4 mt-6">
+        <div className="flex">
+            <img src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`} />
 
-            <div className="text-6xl font-bold">
-                {weather.temp}°C
-            </div>
+            <div className="flex flex-col items-start px-4 mt-6">
+                <div className="text-6xl font-bold">
+                    {weather.temp}°C
+                </div>
 
-            <div className="text-lg">
-                Cloudy
-            </div>
+                <div className="text-lg">
+                    Cloudy
+                </div>
 
-            <div className="text-sm opacity-70">
-                Feels like 23°
+                <div className="text-sm opacity-70">
+                    Feels like 23°
+                </div>
             </div>
 
         </div>
