@@ -1,7 +1,9 @@
 import gif from "../assets/bg_searchScreen.gif"
 import SearchBar from "../components/header/SearchBar"
 
-const SearchScreen = () => {
+const SearchScreen = (props) => {
+
+  const { setCity, onSearch } = props
 
     return (
         <div className="h-screen flex items-center justify-center bg-pink-200">
@@ -32,7 +34,9 @@ const SearchScreen = () => {
             Узнай погоду
           </h1>
 
-          <SearchBar />
+          <SearchBar 
+            setCity={setCity}
+          />
 
         </div>
       </div>

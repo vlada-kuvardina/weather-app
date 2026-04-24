@@ -1,9 +1,18 @@
-const CurrentWeather = () => {
+import getCurrentWeather from "../../services/weatherAPI"
+
+const CurrentWeather = (props) => {
+
+    const { city, weather } = props
+
+    if (!weather) {
+        return <p>Loading...</p>;
+    }
+
     return (
         <div className="flex flex-col items-start px-4 mt-6">
 
             <div className="text-6xl font-bold">
-                22°C
+                {weather.temp}°C
             </div>
 
             <div className="text-lg">
