@@ -1,19 +1,35 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import WeatherScreen from "../screens/WeatherScreen"
 import SearchScreen from "../screens/SearchScreen"
+import getCurrentWeather from "../services/weatherAPI"
 
 const WeatherApp = () => {
 
-    const [city, setCity] = useState("Мщсква")
+    const [weather, setWeather] = useState(null);
+    const [city, setCity] = useState("");
+
+    const fetchWeather = async () => {
+        const data = await getCurrentWeather(city);
+        setWeather(data);
+    };
+
+    useEffect(() => {
+        if (city) {
+            fetchWeather();
+        }
+    }, [city]);
 
     return (
         <div>
             {city ?
                 <WeatherScreen
                     city={city}
+                    weather={weather}
                 />
                 :
-                <SearchScreen />
+                <SearchScreen 
+                    setCity={setCity}
+                />
             }
         </div>
     )
