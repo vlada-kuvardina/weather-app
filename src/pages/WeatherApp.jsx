@@ -30,6 +30,7 @@ const WeatherApp = () => {
                     weather={weather}
                     setCity={setCity}
                     hourlyForecast={hourlyForecast}  
+                    hourlyForecast={hourlyForecast}
                 />
                 :
                 <SearchScreen 

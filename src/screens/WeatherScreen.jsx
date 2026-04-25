@@ -16,8 +16,8 @@ const WeatherScreen = (props) => {
                 <CurrentWeather city={city} weather={weather} />
                 <DetailsCurrentWeather weather={weather}/>
             </div>
-            <HourlyForecast hourlyForecast={hourlyForecast}/>  
-            <DailyForecast />
+            <HourlyForecast hourlyForecast={hourlyForecast}/> 
+            <DailyForecast hourlyForecast={hourlyForecast}/>
         </div>
     )
 }
