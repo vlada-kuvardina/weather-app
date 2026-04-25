@@ -1,5 +1,3 @@
-import getCurrentWeather from "../../services/weatherAPI"
-
 const CurrentWeather = (props) => {
 
     const { city, weather } = props
@@ -18,11 +16,11 @@ const CurrentWeather = (props) => {
                 </div>
 
                 <div className="text-lg">
-                    Cloudy
+                    {weather.description}
                 </div>
 
                 <div className="text-sm opacity-70">
-                    Feels like 23°
+                    Feels like: {Math.round(weather.feelsLike)}°C
                 </div>
             </div>
 
