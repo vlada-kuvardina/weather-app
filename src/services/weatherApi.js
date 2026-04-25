@@ -1,9 +1,9 @@
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 const KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
-async function getCurrentWeather (city) {
+export async function getCurrentWeather (city) {
     try {
-        const url = `${BASE_URL}/weather?q=${city}&appid=${KEY}&units=metric`;
+        const url = `${BASE_URL}/weather?q=${encodeURIComponent(city)}&appid=${KEY}&units=metric`;
 
         const res = await fetch(url);
 
@@ -13,7 +13,7 @@ async function getCurrentWeather (city) {
 
         const data = await res.json();
 
-        const precipitation = data.rain?.["1h"] || data.snow?.["1h"] || 0;
+        const Precipitation = data.rain?.["1h"] || data.snow?.["1h"] || 0;
 
         return {
         city: data.name,
@@ -24,7 +24,7 @@ async function getCurrentWeather (city) {
         pressure: data.main.pressure,
         wind: data.wind.speed,
         description: data.weather[0].description,
-        precipitation: precipitation,
+        precipitation: Precipitation,
         icon: data.weather[0].icon,
         };
 
@@ -34,6 +34,23 @@ async function getCurrentWeather (city) {
     }
 }
 
-export default getCurrentWeather
+export async function getHourlyForecast (city) {
+    try {
+        const url = `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${KEY}&units=metric`;
+
+        const res = await fetch(url);
+
+        if (!res.ok) {
+            throw new Error("Ошибка прогноза");
+        }
+
+        const data = await res.json();
+
+        return data.list; 
+    } catch (error) {
+        console.error(error);
+        return null;
+    }
+};
 
 

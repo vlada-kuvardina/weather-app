@@ -1,16 +1,19 @@
 import { useState, useEffect } from "react"
 import WeatherScreen from "../screens/WeatherScreen"
 import SearchScreen from "../screens/SearchScreen"
-import getCurrentWeather from "../services/weatherAPI"
+import { getCurrentWeather, getHourlyForecast } from "../services/weatherAPI"
 
 const WeatherApp = () => {
-
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState("");
+    const [hourlyForecast, setHourlyForecast] = useState(null)
 
     const fetchWeather = async () => {
-        const data = await getCurrentWeather(city);
-        setWeather(data);
+        const current = await getCurrentWeather(city);
+        const hourlyForecastData = await getHourlyForecast(city);
+
+        setWeather(current);
+        setHourlyForecast(hourlyForecastData);
     };
 
     useEffect(() => {
@@ -26,6 +29,7 @@ const WeatherApp = () => {
                     city={city}
                     weather={weather}
                     setCity={setCity}
+                    hourlyForecast={hourlyForecast}  
                 />
                 :
                 <SearchScreen 

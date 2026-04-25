@@ -7,7 +7,7 @@ import HourlyForecast from "../components/hourlyForecast/hourlyForecast"
 
 const WeatherScreen = (props) => {
 
-    const { city, weather, setCity } = props
+    const { city, weather, setCity, hourlyForecast } = props
 
     return (
         <div className="min-h-screen bg-pink-200">
@@ -16,7 +16,7 @@ const WeatherScreen = (props) => {
                 <CurrentWeather city={city} weather={weather} />
                 <DetailsCurrentWeather weather={weather}/>
             </div>
-            <HourlyForecast />
+            <HourlyForecast hourlyForecast={hourlyForecast}/>  
             <DailyForecast />
         </div>
     )

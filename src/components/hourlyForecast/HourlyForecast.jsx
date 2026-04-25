@@ -1,21 +1,28 @@
-const HourlyForecast = () => {
+const HourlyForecast = (props) => {
+
+    const { hourlyForecast } = props
+
+    if (!hourlyForecast) {
+        return <p>Loading...</p>;
+    }
+
+    const hourlyData = hourlyForecast.slice(0, 6);
+
     return (
-        <div className="mt-6 px-4 overflow-x-auto">
-            <div className="flex gap-4">
+        <div className="flex gap-4 px-4 mt-6">
+            {hourlyData.map((item, index) => {
+                const time = item.dt_txt.split(" ")[1].slice(0, 5);
 
-                <div className="min-w-[60px] text-center">
-                <div>12:00</div>
-                <div>☀️</div>
-                <div>22°</div>
-                </div>
-
-                <div className="min-w-[60px] text-center">
-                <div>15:00</div>
-                <div>☁️</div>
-                <div>21°</div>
-                </div>
-
-            </div>
+                return (
+                    <div key={index} className="flex flex-col items-center">
+                        <p>{time}</p>
+                        <img
+                            src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+                        />
+                        <p>{Math.round(item.main.temp)}°</p>
+                    </div>
+                );
+            })}
         </div>
     )
 }
