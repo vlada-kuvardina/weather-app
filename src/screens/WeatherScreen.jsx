@@ -10,14 +10,29 @@ const WeatherScreen = (props) => {
     const { city, weather, setCity, hourlyForecast } = props
 
     return (
-        <div className="min-h-screen bg-pink-200">
-            <Header city={city} setCity={setCity}/>
-            <div className="flex">
-                <CurrentWeather city={city} weather={weather} />
-                <DetailsCurrentWeather weather={weather}/>
+        <div className="min-h-screen relative bg-gradient-to-br from-orange-300 via-orange-200 to-slate-800">
+            <div className="relative z-10">
+                <Header city={city} setCity={setCity}/>
+                
+                <div className="container mx-auto px-1 py-1">
+                    <div className="glass-panel mb-1">
+                        <CurrentWeather city={city} weather={weather} />
+                    </div>
+                    
+                    <div className="grid md:grid-cols-3 gap-6">
+                        <div className="md:col-span-1">
+                            <DetailsCurrentWeather weather={weather}/>
+                        </div>
+                        <div className="md:col-span-2">
+                            <HourlyForecast hourlyForecast={hourlyForecast}/> 
+                        </div>
+                    </div>
+                    
+                    <div className="mt-6">
+                        <DailyForecast hourlyForecast={hourlyForecast}/>
+                    </div>
+                </div>
             </div>
-            <HourlyForecast hourlyForecast={hourlyForecast}/> 
-            <DailyForecast hourlyForecast={hourlyForecast}/>
         </div>
     )
 }

@@ -14,8 +14,12 @@ export async function getCurrentWeather (city) {
         const data = await res.json();
 
         const Precipitation = data.rain?.["1h"] || data.snow?.["1h"] || 0;
+        const Sunrise = new Date(data.sys.sunrise * 1000);
+        const Sunset = new Date(data.sys.sunset * 1000);
 
         return {
+        main: data.weather[0].main,
+        description: data.weather[0].description,
         city: data.name,
         country: data.sys.country,
         temp: data.main.temp,
@@ -23,9 +27,10 @@ export async function getCurrentWeather (city) {
         humidity: data.main.humidity,
         pressure: data.main.pressure,
         wind: data.wind.speed,
-        description: data.weather[0].description,
         precipitation: Precipitation,
         icon: data.weather[0].icon,
+        sunrise: Sunrise,
+        sunset: Sunset,
         };
 
     } catch (error) {
@@ -37,7 +42,6 @@ export async function getCurrentWeather (city) {
 export async function getHourlyForecast (city) {
     try {
         const url = `${BASE_URL}/forecast?q=${encodeURIComponent(city)}&appid=${KEY}&units=metric`;
-
         const res = await fetch(url);
 
         if (!res.ok) {
@@ -45,8 +49,9 @@ export async function getHourlyForecast (city) {
         }
 
         const data = await res.json();
-
+        
         return data.list; 
+
     } catch (error) {
         console.error(error);
         return null;
