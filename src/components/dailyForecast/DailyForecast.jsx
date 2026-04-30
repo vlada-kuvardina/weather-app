@@ -15,7 +15,7 @@ const DailyForecast = ({ hourlyForecast }) => {
         });
 
         return (
-          <div key={index} className="flex flex-col items-center">
+          <div key={index} className="flex-1 flex flex-col items-center">
             <p>{day}</p>
             <img
               src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}

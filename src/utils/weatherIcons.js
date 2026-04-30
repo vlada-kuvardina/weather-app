@@ -19,9 +19,6 @@ export const weatherIconsMap = {
 };
 
 export const getWeatherIcon = (weather) => {
-  console.log("🌤️ Weather object:", weather);
-  console.log("🔑 weather.main:", weather?.main);
-
   if (!weather) return sunny;
 
   const main = weather.main;
