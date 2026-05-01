@@ -22,13 +22,15 @@ const CurrentWeather = (props) => {
                     <div className="flex items-center gap-1">
                         <span>Sunrise: {weather.sunrise.toLocaleTimeString("ru-RU", {
                             hour: "2-digit",
-                            minute: "2-digit"
+                            minute: "2-digit",
+                            timeZone: 'UTC'
                         })}</span>
                     </div>
                     <div className="flex items-center gap-1">
                         <span>Sunset: {weather.sunset.toLocaleTimeString("ru-RU", {
                             hour: "2-digit",
-                            minute: "2-digit"
+                            minute: "2-digit",
+                            timeZone: 'UTC'
                         })}</span>
                     </div>
                 </div>
