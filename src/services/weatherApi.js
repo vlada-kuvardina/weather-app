@@ -14,8 +14,8 @@ export async function getCurrentWeather (city) {
         const data = await res.json();
 
         const Precipitation = data.rain?.["1h"] || data.snow?.["1h"] || 0;
-        const Sunrise = new Date(data.sys.sunrise * 1000);
-        const Sunset = new Date(data.sys.sunset * 1000);
+        const Sunrise = data.sys.sunrise ? new Date((data.sys.sunrise + data.timezone) * 1000) : null;
+        const Sunset = data.sys.sunset ? new Date((data.sys.sunset + data.timezone) * 1000) : null;
 
         return {
         main: data.weather[0].main,
