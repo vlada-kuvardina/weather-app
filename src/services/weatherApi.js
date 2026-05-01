@@ -31,6 +31,7 @@ export async function getCurrentWeather (city) {
         icon: data.weather[0].icon,
         sunrise: Sunrise,
         sunset: Sunset,
+        timezone: data.timezone,
         };
 
     } catch (error) {

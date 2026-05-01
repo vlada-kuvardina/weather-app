@@ -12,7 +12,7 @@ const WeatherScreen = (props) => {
     return (
         <div className="min-h-screen relative bg-gradient-to-br from-orange-300 via-orange-200 to-slate-800">
             <div className="relative z-10 container p-8">
-                <Header city={city} setCity={setCity}/>
+                <Header city={city} setCity={setCity} weather={weather}/>
 
                 <div className="flex justify-between">
                     <div className="flex gap-6">
