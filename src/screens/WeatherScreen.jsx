@@ -27,7 +27,7 @@ const WeatherScreen = (props) => {
                 backgroundAttachment: "fixed"
             }}
         >
-            <div className="relative z-10 container p-8">
+            <div className="relative z-10 container p-8 items-start">
                 <Header city={city} setCity={setCity} weather={weather}/>
 
                 <div className="flex justify-between">

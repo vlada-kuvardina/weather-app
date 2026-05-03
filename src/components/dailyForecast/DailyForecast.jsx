@@ -7,20 +7,20 @@ const DailyForecast = ({ hourlyForecast }) => {
     .slice(0, 5);
 
   return (
-    <div className="flex gap-4 mt-6 px-4">
+    <div className="flex gap-4 mt-6">
       {dailyData.map((item, index) => {
         const date = new Date(item.dt_txt);
         const day = date.toLocaleDateString("en-US", {
-          weekday: "short"
+          weekday: "long"
         });
 
         return (
-          <div key={index} className="flex-1 flex flex-col items-center">
-            <p>{day}</p>
+          <div key={index} className="flex-1 flex flex-col items-center text-white">
+            <p className="text-2xl">{day}</p>
             <img
               src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
             />
-            <p>{Math.round(item.main.temp)}°</p>
+            <p className="text-xl">{Math.round(item.main.temp)}°</p>
           </div>
         );
       })}
