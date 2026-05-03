@@ -7,6 +7,7 @@ const WeatherApp = () => {
     const [weather, setWeather] = useState(null);
     const [city, setCity] = useState("");
     const [hourlyForecast, setHourlyForecast] = useState(null)
+    const [unit, setUnit] = useState("C")
 
     const fetchWeather = async () => {
         const current = await getCurrentWeather(city);
@@ -31,6 +32,8 @@ const WeatherApp = () => {
                     setCity={setCity}
                     hourlyForecast={hourlyForecast}  
                     hourlyForecast={hourlyForecast}
+                    unit={unit}
+                    setUnit={setUnit}
                 />
                 :
                 <SearchScreen 

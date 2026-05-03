@@ -1,12 +1,21 @@
 import { getWeatherIcon } from "../../utils/weatherIcons";
+import toFahrenheit from "../../utils/temperature"
 
 const CurrentWeather = (props) => {
 
-    const { city, weather } = props
+    const { city, weather, unit } = props
 
     if (!weather) {
         return <p>Loading...</p>;
     }
+
+    const temp = unit === "C"
+        ? Math.round(weather.temp)
+        : toFahrenheit(weather.temp);
+
+    const feelsLike = unit === "C"
+        ? Math.round(weather.feelsLike)
+        : toFahrenheit(weather.feelsLike);
 
     return (
         <div className="flex items-center h-full p-1">
@@ -38,12 +47,12 @@ const CurrentWeather = (props) => {
 
             <div className="flex flex-col justify-between items-center h-full">
                 <div className="text-7xl md:text-7xl lg:text-8xl font-bold drop-shadow-lg text-cyan-600">
-                    +{Math.round(weather.temp)}°C
+                    {temp}°{unit}
                 </div>
 
                 <div>
                     <div className="text-xl md:text-2xl text-white/90 font-medium">
-                        Feels like {Math.round(weather.feelsLike)}°C
+                        Feels like {feelsLike}°{unit}
                     </div>
 
                     <div className="text-lg md:text-xl text-white/80 capitalize">

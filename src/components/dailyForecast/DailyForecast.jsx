@@ -1,4 +1,6 @@
-const DailyForecast = ({ hourlyForecast }) => {
+import toFahrenheit from "../../utils/temperature";
+
+const DailyForecast = ({ hourlyForecast, unit }) => {
 
   if (!hourlyForecast) return null;
 
@@ -13,6 +15,9 @@ const DailyForecast = ({ hourlyForecast }) => {
         const day = date.toLocaleDateString("en-US", {
           weekday: "long"
         });
+        const dailyTemp = unit === "C"
+          ? Math.round(item.main.temp)
+          : toFahrenheit(item.main.temp);
 
         return (
           <div key={index} className="flex-1 flex flex-col items-center text-white">
@@ -20,7 +25,7 @@ const DailyForecast = ({ hourlyForecast }) => {
             <img
               src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
             />
-            <p className="text-xl">{Math.round(item.main.temp)}°</p>
+            <p className="text-xl">{dailyTemp}°</p>
           </div>
         );
       })}

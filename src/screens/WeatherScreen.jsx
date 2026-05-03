@@ -11,7 +11,7 @@ import night from "../assets/bg_weatherScreen/night.jpg"
 
 const WeatherScreen = (props) => {
 
-    const { city, weather, setCity, hourlyForecast } = props
+    const { city, weather, setCity, hourlyForecast, unit, setUnit } = props
 
     const bg = getBackground(weather)
     const bgImages = { morning, day, evening, night };
@@ -28,21 +28,21 @@ const WeatherScreen = (props) => {
             }}
         >
             <div className="relative z-10 container p-8 items-start">
-                <Header city={city} setCity={setCity} weather={weather}/>
+                <Header city={city} setCity={setCity} weather={weather} unit={unit} setUnit={setUnit}/>
 
                 <div className="flex justify-between">
                     <div className="flex gap-6">
-                            <CurrentWeather city={city} weather={weather} />
+                            <CurrentWeather city={city} weather={weather} unit={unit}/>
                             <DetailsCurrentWeather weather={weather}/>
                     </div>
                         
                     <div className="glass-panel">
-                        <HourlyForecast hourlyForecast={hourlyForecast}/> 
+                        <HourlyForecast hourlyForecast={hourlyForecast} unit={unit}/> 
                     </div>
                 </div>
                     
                 <div className="mt-6">
-                    <DailyForecast hourlyForecast={hourlyForecast}/>
+                    <DailyForecast hourlyForecast={hourlyForecast} unit={unit}/>
                 </div>
                 
             </div>

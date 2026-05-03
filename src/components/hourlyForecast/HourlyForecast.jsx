@@ -1,6 +1,8 @@
+import toFahrenheit from "../../utils/temperature"
+
 const HourlyForecast = (props) => {
 
-    const { hourlyForecast } = props
+    const { hourlyForecast, unit } = props
 
     if (!hourlyForecast) {
         return <p>Loading...</p>;
@@ -12,6 +14,9 @@ const HourlyForecast = (props) => {
         <div className="flex gap-4 px-4 mt-6">
             {hourlyData.map((item, index) => {
                 const time = item.dt_txt.split(" ")[1].slice(0, 5);
+                const hourlyTemp = unit === "C"
+                    ? Math.round(item.main.temp)
+                    : toFahrenheit(item.main.temp);
 
                 return (
                     <div key={index} className="flex flex-col items-center">
@@ -19,7 +24,7 @@ const HourlyForecast = (props) => {
                         <img
                             src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
                         />
-                        <p>{Math.round(item.main.temp)}°</p>
+                        <p>{hourlyTemp}°</p>
                     </div>
                 );
             })}

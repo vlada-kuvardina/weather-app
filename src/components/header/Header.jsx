@@ -1,9 +1,10 @@
 import SearchBar from "./SearchBar"
+import UnitToggle from "./UnitToggle"
 import { getCityTime } from "../../utils/time"
 
 const Header = (props) => {
 
-    const { city, setCity, weather } = props
+    const { city, setCity, weather, unit, setUnit } = props
 
     const cityTime = weather ? getCityTime(weather.timezone) : null;
 
@@ -26,10 +27,7 @@ const Header = (props) => {
                 </div>
             </div>
 
-            {/* ПРАВАЯ ЧАСТЬ */}
-            <div>
-                °C / °F
-            </div>
+            <UnitToggle unit={unit} setUnit={setUnit}/>
 
         </div>
     )
