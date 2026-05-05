@@ -8,7 +8,7 @@ const SearchBar = (props) => {
     const [inputValue, setInputValue] = useState("");
 
     const handleSearch = () => {
-        setCity(inputValue);
+        setCity(inputValue); 
     };
 
     return (

@@ -7,11 +7,19 @@ export async function getCurrentWeather (city) {
 
         const res = await fetch(url);
 
+        if (res.status === 404) {
+            throw new Error("Такого города не существует.")
+        }
+
         if (!res.ok) {
             throw new Error("Не удалось получить данные о погоде");
         }
 
         const data = await res.json();
+
+        if (data.cod === '404') {
+            throw new Error("Такого города не существует.");
+        }
 
         const Precipitation = data.rain?.["1h"] || data.snow?.["1h"] || 0;
         const Sunrise = data.sys.sunrise ? new Date((data.sys.sunrise + data.timezone) * 1000) : null;
