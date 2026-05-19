@@ -49,7 +49,6 @@ const WeatherApp = () => {
 
     return (
         <div>
-
             {!city && !loading && !error && (
                 <SearchScreen setCity={setCity} />
             )}
